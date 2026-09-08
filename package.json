@@ -1,0 +1,30 @@
+{
+  "name": "suntrack",
+  "version": "1.0.0",
+  "description": "SunTrack: Solar Panel Cleaning & Maintenance Scheduler",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue,green\" \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "build": "npm run build --prefix server && npm run build --prefix client",
+    "test": "npm run test --prefix server",
+    "server:dev": "npm run dev --prefix server",
+    "client:dev": "npm run dev --prefix client",
+    "prisma:generate": "npm run prisma:generate --prefix server",
+    "prisma:push": "npm run prisma:push --prefix server",
+    "prisma:seed": "npm run prisma:seed --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "keywords": [
+    "solar",
+    "photovoltaic",
+    "soiling",
+    "maintenance",
+    "scheduler",
+    "weather",
+    "clean-energy"
+  ],
+  "author": "SunTrack Team",
+  "license": "ISC"
+}

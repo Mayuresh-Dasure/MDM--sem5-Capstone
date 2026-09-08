@@ -1,0 +1,96 @@
+import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
+
+const prisma = new PrismaClient();
+
+async function main() {
+  console.log('🌱 SunTrack डेटाबेस सीड कर रहे हैं...');
+
+  // 1. Clean existing records
+  await prisma.cleaningRecord.deleteMany();
+  await prisma.weatherSnapshot.deleteMany();
+  await prisma.recommendation.deleteMany();
+  await prisma.solarInstallation.deleteMany();
+  await prisma.notificationPreference.deleteMany();
+  await prisma.user.deleteMany();
+
+  // 2. Create Demo User (Indian context)
+  const passwordHash = await bcrypt.hash('password123', 12);
+  const user = await prisma.user.create({
+    data: {
+      name: 'Rajesh Kumar Sharma',
+      email: 'demo@suntrack.app',
+      phone: '9876543210',
+      state: 'Maharashtra',
+      passwordHash,
+      notificationPreference: {
+        create: {
+          cleaningAlerts: true,
+          rainAlerts: true,
+          weeklySummary: true,
+          emailEnabled: true,
+        },
+      },
+    },
+  });
+
+  console.log(`👤 Demo User बनाया: ${user.email} (पासवर्ड: password123)`);
+
+  // 3. Create Sample Solar Installation - Nagpur (one of India's sunniest cities)
+  const fourteenDaysAgo = new Date();
+  fourteenDaysAgo.setDate(fourteenDaysAgo.getDate() - 14);
+
+  const installation = await prisma.solarInstallation.create({
+    data: {
+      userId: user.id,
+      name: 'छत सौर पैनल — पूर्व खंड',
+      locationName: 'Nagpur, Maharashtra',
+      latitude: 21.1458,
+      longitude: 79.0882,
+      capacityKw: 7.5,
+      panelCount: 20,
+      panelType: 'MONOCRYSTALLINE',
+      tiltDegrees: 21.0,
+      lastCleaningDate: fourteenDaysAgo,
+    },
+  });
+
+  console.log(`⚡ Installation बनाया: ${installation.name} (${installation.capacityKw} kW) — Nagpur`);
+
+  // 4. Historical Cleaning Records (with INR costs)
+  const fortyFiveDaysAgo = new Date();
+  fortyFiveDaysAgo.setDate(fortyFiveDaysAgo.getDate() - 45);
+
+  await prisma.cleaningRecord.create({
+    data: {
+      installationId: installation.id,
+      cleanedAt: fortyFiveDaysAgo,
+      efficiencyBefore: 83.2,
+      efficiencyAfter: 99.5,
+      cost: 350.0, // ₹350 — typical Indian cleaning cost
+      notes: 'तिमाही प्रेशर वॉश और स्क्वीजी सफाई। गर्मियों की धूल हटाई।',
+    },
+  });
+
+  await prisma.cleaningRecord.create({
+    data: {
+      installationId: installation.id,
+      cleanedAt: fourteenDaysAgo,
+      efficiencyBefore: 86.0,
+      efficiencyAfter: 100.0,
+      cost: 200.0, // ₹200 — routine spray
+      notes: 'नियमित पानी से सफाई। मानसून के बाद धूल जमी थी।',
+    },
+  });
+
+  console.log('✅ सीडिंग पूर्ण! SunTrack तैयार है 🇮🇳');
+}
+
+main()
+  .catch((e) => {
+    console.error('❌ सीडिंग में त्रुटि:', e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });

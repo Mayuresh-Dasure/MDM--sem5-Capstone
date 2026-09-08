@@ -1,0 +1,100 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                     String                  @id @default(cuid())
+  name                   String
+  email                  String                  @unique
+  phone                  String?
+  state                  String?
+  passwordHash           String
+  installations          SolarInstallation[]
+  notificationPreference NotificationPreference?
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @updatedAt
+}
+
+model SolarInstallation {
+  id               String            @id @default(cuid())
+  userId           String
+  user             User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name             String
+  latitude         Float
+  longitude        Float
+  locationName     String
+  capacityKw       Float
+  panelCount       Int
+  panelType        String            @default("MONOCRYSTALLINE") // MONOCRYSTALLINE, POLYCRYSTALLINE, THIN_FILM
+  tiltDegrees      Float             @default(25.0)
+  lastCleaningDate DateTime          @default(now())
+  cleaningRecords  CleaningRecord[]
+  weatherSnapshots WeatherSnapshot[]
+  recommendations  Recommendation[]
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  @@index([userId])
+}
+
+model CleaningRecord {
+  id               String            @id @default(cuid())
+  installationId   String
+  installation     SolarInstallation @relation(fields: [installationId], references: [id], onDelete: Cascade)
+  cleanedAt        DateTime
+  efficiencyBefore Float?
+  efficiencyAfter  Float?            @default(100.0)
+  cost             Float?
+  notes            String?
+  createdAt        DateTime          @default(now())
+
+  @@index([installationId, cleanedAt])
+}
+
+model WeatherSnapshot {
+  id               String            @id @default(cuid())
+  installationId   String
+  installation     SolarInstallation @relation(fields: [installationId], references: [id], onDelete: Cascade)
+  timestamp        DateTime
+  temperature      Float
+  humidity         Float
+  windSpeed        Float
+  rainProbability  Float
+  rainfallMm       Float             @default(0.0)
+  cloudCoverage    Int               @default(0)
+  weatherCondition String
+  createdAt        DateTime          @default(now())
+
+  @@index([installationId, timestamp])
+}
+
+model Recommendation {
+  id                  String            @id @default(cuid())
+  installationId      String
+  installation        SolarInstallation @relation(fields: [installationId], references: [id], onDelete: Cascade)
+  type                String            // CLEAN_NOW, CLEAN_SOON, WAIT_FOR_RAIN, NO_ACTION
+  efficiencyLoss      Float
+  estimatedEfficiency Float
+  recommendedDate     DateTime
+  reason              String
+  factors             String            // Serialized JSON breakdown of factors
+  createdAt           DateTime          @default(now())
+
+  @@index([installationId, createdAt])
+}
+
+model NotificationPreference {
+  id             String    @id @default(cuid())
+  userId         String    @unique
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cleaningAlerts Boolean   @default(true)
+  rainAlerts     Boolean   @default(true)
+  weeklySummary  Boolean   @default(false)
+  emailEnabled   Boolean   @default(true)
+  lastNotifiedAt DateTime?
+}
