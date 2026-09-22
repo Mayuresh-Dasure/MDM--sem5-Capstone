@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🌱 SunTrack डेटाबेस सीड कर रहे हैं...');
+  console.log('🌱 Seeding SunTrack database...');
 
   // 1. Clean existing records
   await prisma.cleaningRecord.deleteMany();
@@ -14,7 +14,7 @@ async function main() {
   await prisma.notificationPreference.deleteMany();
   await prisma.user.deleteMany();
 
-  // 2. Create Demo User (Indian context)
+  // 2. Create Demo User
   const passwordHash = await bcrypt.hash('password123', 12);
   const user = await prisma.user.create({
     data: {
@@ -34,16 +34,16 @@ async function main() {
     },
   });
 
-  console.log(`👤 Demo User बनाया: ${user.email} (पासवर्ड: password123)`);
+  console.log(`👤 Created Demo User: ${user.email} (Password: password123)`);
 
-  // 3. Create Sample Solar Installation - Nagpur (one of India's sunniest cities)
+  // 3. Create Sample Solar Installation - Nagpur
   const fourteenDaysAgo = new Date();
   fourteenDaysAgo.setDate(fourteenDaysAgo.getDate() - 14);
 
   const installation = await prisma.solarInstallation.create({
     data: {
       userId: user.id,
-      name: 'छत सौर पैनल — पूर्व खंड',
+      name: 'Rooftop Solar Array - East Block',
       locationName: 'Nagpur, Maharashtra',
       latitude: 21.1458,
       longitude: 79.0882,
@@ -55,9 +55,9 @@ async function main() {
     },
   });
 
-  console.log(`⚡ Installation बनाया: ${installation.name} (${installation.capacityKw} kW) — Nagpur`);
+  console.log(`⚡ Created Installation: ${installation.name} (${installation.capacityKw} kW) — Nagpur`);
 
-  // 4. Historical Cleaning Records (with INR costs)
+  // 4. Historical Cleaning Records
   const fortyFiveDaysAgo = new Date();
   fortyFiveDaysAgo.setDate(fortyFiveDaysAgo.getDate() - 45);
 
@@ -67,8 +67,8 @@ async function main() {
       cleanedAt: fortyFiveDaysAgo,
       efficiencyBefore: 83.2,
       efficiencyAfter: 99.5,
-      cost: 350.0, // ₹350 — typical Indian cleaning cost
-      notes: 'तिमाही प्रेशर वॉश और स्क्वीजी सफाई। गर्मियों की धूल हटाई।',
+      cost: 350.0,
+      notes: 'Quarterly pressure wash and squeegee cleaning. Removed summer dust buildup.',
     },
   });
 
@@ -78,17 +78,17 @@ async function main() {
       cleanedAt: fourteenDaysAgo,
       efficiencyBefore: 86.0,
       efficiencyAfter: 100.0,
-      cost: 200.0, // ₹200 — routine spray
-      notes: 'नियमित पानी से सफाई। मानसून के बाद धूल जमी थी।',
+      cost: 200.0,
+      notes: 'Routine water spray cleaning. Cleared post-monsoon dust.',
     },
   });
 
-  console.log('✅ सीडिंग पूर्ण! SunTrack तैयार है 🇮🇳');
+  console.log('✅ Seeding complete! SunTrack is ready.');
 }
 
 main()
   .catch((e) => {
-    console.error('❌ सीडिंग में त्रुटि:', e);
+    console.error('❌ Error during seeding:', e);
     process.exit(1);
   })
   .finally(async () => {

@@ -4,12 +4,12 @@ import { AuthService } from '../services/authService.js';
 import { AuthenticatedRequest, ApiResponse } from '../types/index.js';
 
 export const registerSchema = z.object({
-  name: z.string().min(2, 'नाम कम से कम 2 अक्षर का होना चाहिए'),
-  email: z.string().email('कृपया एक वैध ईमेल पता दर्ज करें'),
-  password: z.string().min(8, 'पासवर्ड कम से कम 8 अक्षर का होना चाहिए'),
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  email: z.string().email('Please enter a valid email address'),
+  password: z.string().min(8, 'Password must be at least 8 characters'),
   phone: z
     .string()
-    .regex(/^[6-9]\d{9}$/, 'कृपया 10 अंकों का वैध भारतीय मोबाइल नंबर दर्ज करें')
+    .regex(/^[6-9]\d{9}$/, 'Please enter a valid 10-digit mobile number')
     .optional()
     .or(z.literal('')),
   state: z.string().optional(),

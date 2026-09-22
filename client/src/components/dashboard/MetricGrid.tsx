@@ -96,7 +96,7 @@ export const MetricGrid: React.FC<MetricGridProps> = ({ recommendation }) => {
             ~{estimatedEnergyLostKwhDaily} <span className="text-sm font-semibold text-slate-400">kWh/day</span>
           </div>
           <p className="text-xs text-slate-400 mt-1">
-            Est. financial drag: ~${(estimatedEnergyLostKwhDaily * 0.15 * 30).toFixed(1)}/mo
+            Est. financial drag: ~₹{(estimatedEnergyLostKwhDaily * 8.0 * 30).toFixed(0)}/mo
           </p>
         </div>
         <div className="pt-2 border-t border-slate-800 flex items-center gap-3 text-[11px] text-slate-400">

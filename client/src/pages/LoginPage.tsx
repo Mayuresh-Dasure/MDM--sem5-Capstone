@@ -27,7 +27,7 @@ export const LoginPage: React.FC = () => {
     } catch (err: unknown) {
       const msg =
         (err as { response?: { data?: { error?: { message?: string } } } })?.response?.data
-          ?.error?.message || 'ईमेल या पासवर्ड गलत है। कृपया पुनः प्रयास करें।';
+          ?.error?.message || 'Invalid email or password. Please try again.';
       setError(msg);
     } finally {
       setIsLoading(false);
@@ -59,10 +59,10 @@ export const LoginPage: React.FC = () => {
           </span>
         </Link>
         <h1 className="text-xl font-extrabold text-slate-100 font-['Outfit',sans-serif]">
-          अपने सोलर डैशबोर्ड में लॉग इन करें
+          Sign in to your Solar Dashboard
         </h1>
         <p className="text-xs text-slate-400">
-          रियल-टाइम मौसम डेटा और सफाई सुझावों तक पहुँचें।
+          Access real-time weather analytics and intelligent cleaning schedules.
         </p>
       </div>
 
@@ -105,10 +105,10 @@ export const LoginPage: React.FC = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <Input
               id="login-email"
-              label="ईमेल पता"
+              label="Email Address"
               type="email"
               required
-              placeholder="aapka@email.com"
+              placeholder="your.email@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               leftIcon={<Mail className="w-4 h-4" />}
@@ -117,7 +117,7 @@ export const LoginPage: React.FC = () => {
             <div className="relative">
               <Input
                 id="login-password"
-                label="पासवर्ड"
+                label="Password"
                 type={showPassword ? 'text' : 'password'}
                 required
                 placeholder="••••••••"
@@ -143,14 +143,14 @@ export const LoginPage: React.FC = () => {
               className="w-full mt-2"
               rightIcon={<ArrowRight className="w-4 h-4" />}
             >
-              लॉग इन करें
+              Sign In
             </Button>
           </form>
 
           <div className="text-center pt-2 border-t border-slate-800 text-xs text-slate-400">
-            खाता नहीं है?{' '}
+            Don't have an account?{' '}
             <Link to="/register" className="text-amber-400 hover:underline font-semibold">
-              अभी पंजीकरण करें
+              Register now
             </Link>
           </div>
         </Card>

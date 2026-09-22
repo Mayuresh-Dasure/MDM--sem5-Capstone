@@ -14,7 +14,7 @@ export const InstallationModal: React.FC<InstallationModalProps> = ({ isOpen, on
   const { createInstallation } = useInstallation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<CreateInstallationData>({
-    name: 'छत सौर प्रणाली',
+    name: 'Rooftop Solar Array',
     locationName: 'Pune, Maharashtra',
     latitude: 18.5204,
     longitude: 73.8567,
@@ -55,7 +55,7 @@ export const InstallationModal: React.FC<InstallationModalProps> = ({ isOpen, on
             value={formData.locationName}
             onChange={(e) => setFormData({ ...formData, locationName: e.target.value })}
             required
-            placeholder="जैसे: Nagpur, Maharashtra"
+            placeholder="e.g. Nagpur, Maharashtra"
           />
 
           <div>

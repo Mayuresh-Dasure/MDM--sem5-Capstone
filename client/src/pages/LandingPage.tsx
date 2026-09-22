@@ -35,12 +35,12 @@ export const LandingPage: React.FC = () => {
           <div className="flex items-center gap-3">
             <Link to="/login">
               <Button variant="ghost" size="sm">
-                लॉग इन
+                Log In
               </Button>
             </Link>
             <Link to="/register">
               <Button variant="solar" size="sm" rightIcon={<ArrowRight className="w-4 h-4" />}>
-                निःशुल्क शुरू करें
+                Get Started Free
               </Button>
             </Link>
           </div>
@@ -57,57 +57,56 @@ export const LandingPage: React.FC = () => {
           {/* Pill badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>भारत का स्मार्ट सोलर पैनल क्लीनिंग शेड्यूलर</span>
+            <span>Smart Solar Panel Cleaning &amp; Maintenance Scheduler</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight font-['Outfit',sans-serif] leading-tight">
-            जानें कब धोएँ अपने{' '}
+            Know Exactly When To Clean Your{' '}
             <span className="bg-gradient-to-r from-amber-400 via-orange-300 to-amber-500 bg-clip-text text-transparent">
-              सोलर पैनल
+              Solar Panels
             </span>
           </h1>
 
           <p className="text-base sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            SunTrack स्थानीय मौसम पूर्वानुमान, वर्षा संभावना, धूल संचय और शुष्क दिनों का विश्लेषण
-            करके बताता है — अभी साफ करें, या बारिश का इंतज़ार करें। बिजली उत्पादन में ₹ की बचत करें।
+            SunTrack analyzes local weather forecasts, rain probability, dust accumulation, and dry days to tell you whether to clean now or wait for rain. Maximize power generation and save on maintenance costs.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <Link to="/login" className="w-full sm:w-auto">
               <Button variant="solar" size="lg" className="w-full sm:w-auto text-base">
-                लाइव डेमो आज़माएं →
+                Try Live Demo →
               </Button>
             </Link>
             <Link to="/register" className="w-full sm:w-auto">
               <Button variant="secondary" size="lg" className="w-full sm:w-auto text-base">
-                निःशुल्क खाता बनाएं
+                Create Free Account
               </Button>
             </Link>
           </div>
 
-          {/* Indian-context Quick Stats */}
+          {/* Quick Stats */}
           <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto text-left">
             <div className="p-3 bg-slate-900/60 border border-slate-800 rounded-xl">
-              <span className="block text-[10px] uppercase text-slate-400 font-semibold">औसत दक्षता हानि</span>
+              <span className="block text-[10px] uppercase text-slate-400 font-semibold">Avg Efficiency Loss</span>
               <span className="text-xl font-bold text-amber-400 font-['Outfit',sans-serif]">15% – 25%</span>
             </div>
             <div className="p-3 bg-slate-900/60 border border-slate-800 rounded-xl">
-              <span className="block text-[10px] uppercase text-slate-400 font-semibold">पानी बचत</span>
-              <span className="text-xl font-bold text-sky-400 font-['Outfit',sans-serif]">~150 लीटर/धुलाई</span>
+              <span className="block text-[10px] uppercase text-slate-400 font-semibold">Water Saved</span>
+              <span className="text-xl font-bold text-sky-400 font-['Outfit',sans-serif]">~150 L / wash</span>
             </div>
             <div className="p-3 bg-slate-900/60 border border-slate-800 rounded-xl">
-              <span className="block text-[10px] uppercase text-slate-400 font-semibold">निर्णय इंजन</span>
-              <span className="text-xl font-bold text-emerald-400 font-['Outfit',sans-serif]">100% व्याख्येय</span>
+              <span className="block text-[10px] uppercase text-slate-400 font-semibold">Decision Engine</span>
+              <span className="text-xl font-bold text-emerald-400 font-['Outfit',sans-serif]">100% Explainable</span>
             </div>
             <div className="p-3 bg-slate-900/60 border border-slate-800 rounded-xl">
-              <span className="block text-[10px] uppercase text-slate-400 font-semibold">लाइव पूर्वानुमान</span>
-              <span className="text-xl font-bold text-slate-200 font-['Outfit',sans-serif]">5-दिन मौसम</span>
+              <span className="block text-[10px] uppercase text-slate-400 font-semibold">Live Forecast</span>
+              <span className="text-xl font-bold text-slate-200 font-['Outfit',sans-serif]">5-Day Weather</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Indian Solar Context Banner */}
+      {/* Solar Context Banner */}
       <section className="py-8 px-6 bg-gradient-to-r from-amber-950/30 via-slate-900/60 to-orange-950/30 border-t border-amber-500/10">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
           <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0">
@@ -115,21 +114,20 @@ export const LandingPage: React.FC = () => {
           </div>
           <div>
             <h2 className="text-base font-bold text-amber-300 font-['Outfit',sans-serif]">
-              भारत के शीर्ष सौर राज्यों के लिए अनुकूलित
+              Optimized for High Solar Radiation Regions
             </h2>
             <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
-              राजस्थान, गुजरात, महाराष्ट्र, तेलंगाना, तमिलनाडु और आंध्र प्रदेश जैसे उच्च-विकिरण राज्यों के लिए
-              विशेष रूप से कैलिब्रेटेड। मानसून पूर्व और पश्चात धूल चक्र को ध्यान में रखा गया है।
+              Specifically calibrated for high solar yield areas and seasonal dust cycles. Accounts for dust accumulation, tilt angle, and natural rain washing patterns.
             </p>
           </div>
           <div className="flex items-center gap-6 shrink-0 text-xs text-slate-400">
             <div className="text-center">
               <span className="block text-lg font-bold text-amber-400 font-['Outfit',sans-serif]">750+</span>
-              <span>GW लक्ष्य 2030</span>
+              <span>GW Target</span>
             </div>
             <div className="text-center">
-              <span className="block text-lg font-bold text-emerald-400 font-['Outfit',sans-serif]">₹8–10</span>
-              <span>प्रति यूनिट बचत</span>
+              <span className="block text-lg font-bold text-emerald-400 font-['Outfit',sans-serif]">High ROI</span>
+              <span>Per Unit Value</span>
             </div>
           </div>
         </div>
@@ -140,10 +138,10 @@ export const LandingPage: React.FC = () => {
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center space-y-2">
             <h2 className="text-2xl sm:text-3xl font-bold text-white font-['Outfit',sans-serif]">
-              स्मार्ट सौर बुद्धिमत्ता के लिए निर्मित
+              Built for Intelligent Solar Operations
             </h2>
             <p className="text-sm text-slate-400 max-w-2xl mx-auto">
-              मौसम विज्ञान और सौर इंजीनियरिंग के सिद्धांतों को मिलाकर आपके फोटोवोल्टाइक निवेश की सुरक्षा करें।
+              Combining meteorological telemetry and solar engineering principles to protect your photovoltaic investment.
             </p>
           </div>
 
@@ -153,11 +151,10 @@ export const LandingPage: React.FC = () => {
                 <CloudRain className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-bold text-white font-['Outfit',sans-serif]">
-                72-घंटे वर्षा पूर्वानुमान
+                72-Hour Rain Forecasting
               </h3>
               <p className="text-xs text-slate-400 leading-relaxed">
-                अनावश्यक सफाई रोकता है। यदि 72 घंटों में &gt;60% संभावना से &gt;5mm वर्षा आने वाली
-                है, तो इंजन <strong className="text-sky-300">WAIT_FOR_RAIN</strong> का संकेत देता है।
+                Prevents unnecessary washing. If &gt;60% probability of &gt;5mm rain in 72 hours, the engine flags <strong className="text-sky-300">WAIT_FOR_RAIN</strong>.
               </p>
             </Card>
 
@@ -166,11 +163,10 @@ export const LandingPage: React.FC = () => {
                 <Zap className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-bold text-white font-['Outfit',sans-serif]">
-                धूल संचय गणितीय मॉडल
+                Mathematical Soiling Model
               </h3>
               <p className="text-xs text-slate-400 leading-relaxed">
-                लगातार शुष्क दिन, झुकाव कोण, हवा की गति और आर्द्रता — सब कुछ मापा जाता है।
-                कोई black-box अनुमान नहीं, पूरी तरह पारदर्शी सूत्र।
+                Tracks consecutive dry days, tilt angle, wind speed, and humidity with fully transparent, deterministic calculations.
               </p>
             </Card>
 
@@ -179,11 +175,10 @@ export const LandingPage: React.FC = () => {
                 <IndianRupee className="w-5 h-5" />
               </div>
               <h3 className="text-lg font-bold text-white font-['Outfit',sans-serif]">
-                ₹ ROI ट्रैकर
+                ROI &amp; Savings Tracker
               </h3>
               <p className="text-xs text-slate-400 leading-relaxed">
-                हर सफाई लॉग करें, पानी और मज़दूरी का खर्च ट्रैक करें, और जीवनभर
-                में बचाई गई बिजली का ₹ मूल्य देखें।
+                Log every cleaning session, track labor and water costs, and monitor lifetime energy savings.
               </p>
             </Card>
           </div>
@@ -196,11 +191,10 @@ export const LandingPage: React.FC = () => {
               </div>
               <div className="space-y-1.5">
                 <h3 className="text-base font-bold text-white font-['Outfit',sans-serif]">
-                  दक्षता इतिहास चार्ट
+                  Efficiency History Charts
                 </h3>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                  इंटरैक्टिव Recharts ग्राफ़ — पिछले 30 दिनों का दक्षता क्षरण और
-                  अगले 7 दिनों का प्रोजेक्शन एक साथ।
+                  Interactive Recharts curves showing 30-day degradation history and 7-day future projections side by side.
                 </p>
               </div>
             </Card>
@@ -211,11 +205,10 @@ export const LandingPage: React.FC = () => {
               </div>
               <div className="space-y-1.5">
                 <h3 className="text-base font-bold text-white font-['Outfit',sans-serif]">
-                  मानसून-स्मार्ट शेड्यूलिंग
+                  Rain &amp; Weather Smart Scheduling
                 </h3>
                 <p className="text-xs text-slate-400 leading-relaxed">
-                  भारतीय मानसून सीज़न में प्राकृतिक वर्षा से पैनल की सफाई को
-                  ट्रैक करें — पानी और मेहनत दोनों बचाएं।
+                  Track natural rainfall washing cycles to optimize cleaning frequency and save both water and labor.
                 </p>
               </div>
             </Card>
@@ -232,10 +225,10 @@ export const LandingPage: React.FC = () => {
             </div>
             <div>
               <h3 className="text-xl font-bold text-white font-['Outfit',sans-serif]">
-                निर्धारक निर्णय अवस्थाएं
+                Deterministic Decision Logic
               </h3>
               <p className="text-xs text-slate-400">
-                SunTrack इंजन प्रत्येक सौर स्थापना के लिए यह 4 अवस्थाएं लागू करता है:
+                The SunTrack engine evaluates four transparent states for every installation:
               </p>
             </div>
           </div>
@@ -243,19 +236,19 @@ export const LandingPage: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
             <div className="p-4 rounded-xl bg-slate-950 border border-rose-500/30 space-y-1.5 hover:border-rose-500/50 transition-colors">
               <div className="font-bold text-rose-400 uppercase text-[11px] tracking-wide">🔴 CLEAN_NOW</div>
-              <p className="text-slate-300">हानि ≥ 15%, लंबे समय से शुष्क मौसम। आज ही सफाई करें — उत्पादन तुरंत बढ़ेगा।</p>
+              <p className="text-slate-300">Loss ≥ 15%, extended dry period. Clean today for immediate yield recovery.</p>
             </div>
             <div className="p-4 rounded-xl bg-slate-950 border border-amber-500/30 space-y-1.5 hover:border-amber-500/50 transition-colors">
               <div className="font-bold text-amber-400 uppercase text-[11px] tracking-wide">🟡 CLEAN_SOON</div>
-              <p className="text-slate-300">हानि 8–15%, 3+ दिन शुष्क पूर्वानुमान। अगले सप्ताहांत सफाई की योजना बनाएं।</p>
+              <p className="text-slate-300">Loss 8–15%, 3+ dry days ahead. Plan cleaning within the next weekend.</p>
             </div>
             <div className="p-4 rounded-xl bg-slate-950 border border-sky-500/30 space-y-1.5 hover:border-sky-500/50 transition-colors">
               <div className="font-bold text-sky-400 uppercase text-[11px] tracking-wide">🔵 WAIT_FOR_RAIN</div>
-              <p className="text-slate-300">72 घंटों में ≥60% वर्षा संभावना। पानी और मज़दूरी बचाएं, प्रकृति को काम करने दें।</p>
+              <p className="text-slate-300">≥60% rain probability in next 72 hours. Save water and labor, let nature clean the array.</p>
             </div>
             <div className="p-4 rounded-xl bg-slate-950 border border-emerald-500/30 space-y-1.5 hover:border-emerald-500/50 transition-colors">
               <div className="font-bold text-emerald-400 uppercase text-[11px] tracking-wide">🟢 NO_ACTION</div>
-              <p className="text-slate-300">पैनल हाल ही में साफ हुए या &gt;92% स्वास्थ्य सूचकांक पर चल रहे हैं।</p>
+              <p className="text-slate-300">Panels cleaned recently or operating at &gt;92% performance ratio.</p>
             </div>
           </div>
         </div>
@@ -263,10 +256,9 @@ export const LandingPage: React.FC = () => {
 
       {/* Footer */}
       <footer className="mt-auto border-t border-slate-800/80 bg-slate-950 px-6 py-8 text-center text-xs text-slate-500 space-y-2">
-        <p>© 2026 SunTrack — Solar Panel Cleaning &amp; Maintenance Scheduler | भारत के लिए निर्मित 🇮🇳</p>
+        <p>© 2026 SunTrack — Solar Panel Cleaning &amp; Maintenance Scheduler</p>
         <p className="max-w-xl mx-auto text-[11px] text-slate-400">
-          अस्वीकरण: यह एक गणितीय सॉफ्टवेयर अनुमान मॉडल है जो मौसम संबंधी टेलीमेट्री पर आधारित है।
-          यह एक शैक्षणिक Capstone परियोजना के रूप में विकसित किया गया है।
+          Disclaimer: Mathematical software estimation model based on meteorological telemetry. Developed for Capstone project research.
         </p>
       </footer>
     </div>

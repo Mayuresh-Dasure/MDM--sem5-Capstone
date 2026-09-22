@@ -18,7 +18,7 @@ export class AuthService {
     });
 
     if (existing) {
-      throw AppError.conflict('इस ईमेल पते से एक खाता पहले से मौजूद है');
+      throw AppError.conflict('An account with this email address already exists');
     }
 
     const passwordHash = await bcrypt.hash(data.password, 12);

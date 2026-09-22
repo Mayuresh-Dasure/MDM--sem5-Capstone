@@ -9,7 +9,7 @@ import { RecordCleaningModal } from '../components/dashboard/RecordCleaningModal
 import {
   Droplets,
   Plus,
-  DollarSign,
+  IndianRupee,
   Zap,
   Trash2,
   TrendingUp,
@@ -92,10 +92,10 @@ export const CleaningHistoryPage: React.FC = () => {
           <Card className="p-4">
             <div className="flex items-center justify-between text-xs text-slate-400">
               <span className="uppercase font-semibold">Total Spent</span>
-              <DollarSign className="w-4 h-4 text-amber-400" />
+              <IndianRupee className="w-4 h-4 text-amber-400" />
             </div>
             <div className="text-2xl font-black text-amber-400 font-['Outfit',sans-serif] mt-2">
-              ${stats.totalSpent.toFixed(2)}
+              ₹{stats.totalSpent.toFixed(2)}
             </div>
             <span className="text-[11px] text-slate-400">Water & labor costs</span>
           </Card>
@@ -109,7 +109,7 @@ export const CleaningHistoryPage: React.FC = () => {
               {stats.totalRecoveredKwh} <span className="text-xs">kWh</span>
             </div>
             <span className="text-[11px] text-slate-400">
-              Value: ~${stats.estimatedValueRecovered.toFixed(2)}
+              Value: ~₹{stats.estimatedValueRecovered.toFixed(2)}
             </span>
           </Card>
 
@@ -119,7 +119,7 @@ export const CleaningHistoryPage: React.FC = () => {
               <TrendingUp className="w-4 h-4 text-teal-400" />
             </div>
             <div className="text-2xl font-black text-teal-400 font-['Outfit',sans-serif] mt-2">
-              +${stats.netRoi.toFixed(2)}
+              +₹{stats.netRoi.toFixed(2)}
             </div>
             <span className="text-[11px] text-slate-400">Yield revenue vs expense</span>
           </Card>
@@ -169,7 +169,7 @@ export const CleaningHistoryPage: React.FC = () => {
                       {r.efficiencyAfter ? `${r.efficiencyAfter}%` : '100%'}
                     </td>
                     <td className="py-3 px-4 text-slate-300">
-                      {r.cost ? `$${r.cost.toFixed(2)}` : 'Free ($0.00)'}
+                      {r.cost ? `₹${r.cost.toFixed(2)}` : 'Free (₹0.00)'}
                     </td>
                     <td className="py-3 px-4 text-slate-400 max-w-xs truncate">
                       {r.notes || '—'}

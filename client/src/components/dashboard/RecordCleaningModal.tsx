@@ -24,7 +24,7 @@ export const RecordCleaningModal: React.FC<RecordCleaningModalProps> = ({
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [cleanedAt, setCleanedAt] = useState(new Date().toISOString().split('T')[0]);
-  const [cost, setCost] = useState<string>('35.00');
+  const [cost, setCost] = useState<string>('250.00');
   const [notes, setNotes] = useState('Manual pressure wash and squeegee wipe.');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -69,7 +69,7 @@ export const RecordCleaningModal: React.FC<RecordCleaningModalProps> = ({
 
         <div className="grid grid-cols-2 gap-4">
           <Input
-            label="Service / Water Cost ($)"
+            label="Service / Water Cost (₹)"
             type="number"
             step="0.01"
             min="0"

@@ -120,8 +120,8 @@ export class AnalyticsService {
     const estRecoveredKwhPerWash = nominalDailyKwh * 0.12 * 30;
     const totalRecoveredKwh = Number((totalCleanings * estRecoveredKwhPerWash).toFixed(1));
 
-    // Financial value recovered (avg $0.15 / kWh electricity tariff)
-    const avgTariff = 0.15;
+    // Financial value recovered (avg ₹8.00 / kWh Indian electricity tariff)
+    const avgTariff = 8.0;
     const estimatedValueRecovered = Number((totalRecoveredKwh * avgTariff).toFixed(2));
     const netRoi = Number((estimatedValueRecovered - totalSpent).toFixed(2));
 

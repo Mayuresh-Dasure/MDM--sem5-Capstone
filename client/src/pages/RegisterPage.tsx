@@ -94,15 +94,15 @@ export const RegisterPage: React.FC = () => {
     setError('');
 
     if (password !== confirmPassword) {
-      setError('दोनों पासवर्ड मेल नहीं खाते। कृपया दोबारा जाँचें।');
+      setError('Passwords do not match. Please try again.');
       return;
     }
     if (password.length < 8) {
-      setError('पासवर्ड कम से कम 8 अक्षर का होना चाहिए।');
+      setError('Password must be at least 8 characters long.');
       return;
     }
     if (phone && !validatePhone(phone)) {
-      setError('कृपया 6-9 से शुरू होने वाला 10 अंकों का मोबाइल नंबर दर्ज करें।');
+      setError('Please enter a valid 10-digit mobile number.');
       return;
     }
 
@@ -113,7 +113,7 @@ export const RegisterPage: React.FC = () => {
     } catch (err: unknown) {
       const msg =
         (err as { response?: { data?: { error?: { message?: string } } } })?.response?.data
-          ?.error?.message || 'पंजीकरण विफल हुआ। कृपया पुनः प्रयास करें।';
+          ?.error?.message || 'Registration failed. Please try again.';
       setError(msg);
     } finally {
       setIsLoading(false);
@@ -139,10 +139,10 @@ export const RegisterPage: React.FC = () => {
           </span>
         </Link>
         <h1 className="text-xl font-extrabold text-slate-100 font-['Outfit',sans-serif]">
-          अपना SunTrack खाता बनाएं
+          Create your SunTrack Account
         </h1>
         <p className="text-xs text-slate-400">
-          भारत में सौर पैनल की सफाई को स्मार्ट बनाएं — पंजीकरण निःशुल्क है।
+          Optimize solar panel cleaning — Registration is free.
         </p>
       </div>
 
@@ -152,7 +152,7 @@ export const RegisterPage: React.FC = () => {
           {/* Trust badge */}
           <div className="flex items-center gap-2 text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-xl px-3 py-2">
             <ShieldCheck className="w-4 h-4 shrink-0" />
-            <span>आपका डेटा सुरक्षित है — bcrypt + JWT एन्क्रिप्शन के साथ</span>
+            <span>Your data is secure — Encrypted with bcrypt + JWT</span>
           </div>
 
           {/* Error box */}
@@ -166,10 +166,10 @@ export const RegisterPage: React.FC = () => {
             {/* Full Name */}
             <Input
               id="register-name"
-              label="पूरा नाम"
+              label="Full Name"
               type="text"
               required
-              placeholder="जैसे: Rajesh Kumar Sharma"
+              placeholder="e.g. Alex Johnson"
               value={name}
               onChange={(e) => setName(e.target.value)}
               leftIcon={<UserIcon className="w-4 h-4" />}
@@ -178,10 +178,10 @@ export const RegisterPage: React.FC = () => {
             {/* Email */}
             <Input
               id="register-email"
-              label="ईमेल पता"
+              label="Email Address"
               type="email"
               required
-              placeholder="aapka@email.com"
+              placeholder="your.email@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               leftIcon={<Mail className="w-4 h-4" />}
@@ -192,7 +192,7 @@ export const RegisterPage: React.FC = () => {
               <div>
                 <Input
                   id="register-phone"
-                  label="मोबाइल नंबर (वैकल्पिक)"
+                  label="Mobile Number (Optional)"
                   type="tel"
                   placeholder="9876543210"
                   value={phone}
@@ -201,12 +201,12 @@ export const RegisterPage: React.FC = () => {
                 />
                 {phone && !validatePhone(phone) && (
                   <p className="text-[11px] text-rose-400 mt-1 pl-1">
-                    10 अंकों का मान्य नंबर दर्ज करें
+                    Enter a valid 10-digit number
                   </p>
                 )}
                 {phone && validatePhone(phone) && (
                   <p className="text-[11px] text-emerald-400 mt-1 pl-1 flex items-center gap-1">
-                    <CheckCircle2 className="w-3 h-3" /> मान्य नंबर
+                    <CheckCircle2 className="w-3 h-3" /> Valid number
                   </p>
                 )}
               </div>
@@ -216,7 +216,7 @@ export const RegisterPage: React.FC = () => {
                   htmlFor="register-state"
                   className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5"
                 >
-                  राज्य
+                  State
                 </label>
                 <div className="relative">
                   <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
@@ -226,7 +226,7 @@ export const RegisterPage: React.FC = () => {
                     onChange={(e) => setState(e.target.value)}
                     className="w-full bg-slate-900 border border-slate-800 text-slate-100 rounded-lg pl-9 pr-3.5 py-2.5 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500/20 focus:outline-none appearance-none cursor-pointer"
                   >
-                    <option value="">— राज्य चुनें —</option>
+                    <option value="">— Select State —</option>
                     {INDIAN_STATES.map((s) => (
                       <option key={s} value={s}>
                         {s}
@@ -242,10 +242,10 @@ export const RegisterPage: React.FC = () => {
               <div className="relative">
                 <Input
                   id="register-password"
-                  label="पासवर्ड"
+                  label="Password"
                   type={showPassword ? 'text' : 'password'}
                   required
-                  placeholder="कम से कम 8 अक्षर"
+                  placeholder="At least 8 characters"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   leftIcon={<Lock className="w-4 h-4" />}
@@ -274,7 +274,7 @@ export const RegisterPage: React.FC = () => {
                     ))}
                   </div>
                   <p className={`text-[11px] font-semibold ${strengthScore <= 1 ? 'text-rose-400' : strengthScore === 2 ? 'text-amber-400' : strengthScore === 3 ? 'text-yellow-400' : 'text-emerald-400'}`}>
-                    {strengthLabel && `पासवर्ड शक्ति: ${strengthLabel}`}
+                    {strengthLabel && `Password strength: ${strengthLabel}`}
                   </p>
                 </div>
               )}
@@ -284,10 +284,10 @@ export const RegisterPage: React.FC = () => {
             <div className="relative">
               <Input
                 id="register-confirm-password"
-                label="पासवर्ड की पुष्टि करें"
+                label="Confirm Password"
                 type={showConfirm ? 'text' : 'password'}
                 required
-                placeholder="पासवर्ड दोबारा दर्ज करें"
+                placeholder="Re-enter your password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 leftIcon={<Lock className="w-4 h-4" />}
@@ -308,10 +308,10 @@ export const RegisterPage: React.FC = () => {
                 >
                   {password === confirmPassword ? (
                     <>
-                      <CheckCircle2 className="w-3 h-3" /> पासवर्ड मेल खाता है
+                      <CheckCircle2 className="w-3 h-3" /> Passwords match
                     </>
                   ) : (
-                    '✗ पासवर्ड मेल नहीं खाता'
+                    '✗ Passwords do not match'
                   )}
                 </p>
               )}
@@ -319,9 +319,9 @@ export const RegisterPage: React.FC = () => {
 
             {/* Terms */}
             <p className="text-[11px] text-slate-500 leading-relaxed">
-              खाता बनाकर आप हमारी{' '}
-              <span className="text-amber-400">सेवा शर्तों</span> और{' '}
-              <span className="text-amber-400">गोपनीयता नीति</span> से सहमत होते हैं।
+              By creating an account, you agree to our{' '}
+              <span className="text-amber-400">Terms of Service</span> and{' '}
+              <span className="text-amber-400">Privacy Policy</span>.
             </p>
 
             <Button
@@ -331,14 +331,14 @@ export const RegisterPage: React.FC = () => {
               className="w-full mt-1"
               rightIcon={<ArrowRight className="w-4 h-4" />}
             >
-              खाता बनाएं
+              Create Account
             </Button>
           </form>
 
           <div className="text-center pt-2 border-t border-slate-800 text-xs text-slate-400">
-            पहले से खाता है?{' '}
+            Already have an account?{' '}
             <Link to="/login" className="text-amber-400 hover:underline font-semibold">
-              यहाँ लॉग इन करें
+              Log in here
             </Link>
           </div>
         </Card>
